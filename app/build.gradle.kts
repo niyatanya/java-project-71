@@ -14,6 +14,7 @@ repositories {
 dependencies {
     testImplementation(platform("org.junit:junit-bom:5.10.1"))
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.1")
+    implementation("info.picocli:picocli:4.7.5")
 }
 
 tasks.test {
