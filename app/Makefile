@@ -1,2 +1,2 @@
 run-dist: #запуск программы
-	build/install/app/bin/app
+	./build/install/app/bin/app
