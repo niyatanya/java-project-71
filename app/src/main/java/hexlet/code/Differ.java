@@ -3,7 +3,10 @@ package hexlet.code;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.LinkedHashMap;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -24,8 +27,8 @@ public class Differ {
         String jsonFile2 = Files.readString(file2Path);
 
         ObjectMapper objectMapper = new ObjectMapper();
-        Map<String, Object> map1 = objectMapper.readValue(jsonFile1, new TypeReference<>(){});
-        Map<String, Object> map2 = objectMapper.readValue(jsonFile2, new TypeReference<>(){});
+        Map<String, Object> map1 = objectMapper.readValue(jsonFile1, new TypeReference<>() { });
+        Map<String, Object> map2 = objectMapper.readValue(jsonFile2, new TypeReference<>() { });
 
         Set<String> set = new TreeSet<>();
         set.addAll(map1.keySet());
