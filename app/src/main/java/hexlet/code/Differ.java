@@ -14,6 +14,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Differ {
     public static String generate(String filePath1, String filePath2) throws Exception {
+        System.out.println("> generate()");
+        System.out.println("filePath1: " + filePath1);
+        System.out.println("filePath2: " + filePath2);
+
         Path file1Path = Paths.get(filePath1).toAbsolutePath().normalize();
         Path file2Path = Paths.get(filePath2).toAbsolutePath().normalize();
         if (!Files.exists(file1Path)) {
@@ -22,6 +26,8 @@ public class Differ {
         if (!Files.exists(file2Path)) {
             throw new Exception("File '" + file2Path + "' does not exist");
         }
+
+        System.out.println("try to read all files");
 
         String jsonFile1 = Files.readString(file1Path);
         String jsonFile2 = Files.readString(file2Path);
