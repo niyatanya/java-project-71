@@ -65,3 +65,12 @@ jobs:
     # See: https://github.com/gradle/actions/blob/main/dependency-submission/README.md
     - name: Generate and submit dependency graph
       uses: gradle/actions/dependency-submission@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
+
+    - name: Publish code coverage
+      uses: paambaati/codeclimate-action@v3.1.1
+      env:
+           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
+           JACOCO_SOURCE_PATH: app/src/main/java
+      with:
+           coverageCommand: make report
+           coverageLocations: ${{github.workspace}}/app/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
