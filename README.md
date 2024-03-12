@@ -1,6 +1,7 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/niyatanya/java-project-71/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/niyatanya/java-project-71/actions)
 [![Java CI with Gradle](https://github.com/niyatanya/java-project-71/actions/workflows/gradle.yml/badge.svg)](https://github.com/niyatanya/java-project-71/actions/workflows/gradle.yml)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/f70dc800989ad79e3fe2/test_coverage)](https://codeclimate.com/github/niyatanya/java-project-71/test_coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/f70dc800989ad79e3fe2/maintainability)](https://codeclimate.com/github/niyatanya/java-project-71/maintainability)
 
 ## Preview
