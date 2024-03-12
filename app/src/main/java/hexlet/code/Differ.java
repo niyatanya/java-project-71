@@ -9,9 +9,6 @@ import java.util.TreeSet;
 import java.util.LinkedHashMap;
 import java.util.stream.Collectors;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 public class Differ {
     public static String generate(String filePath1, String filePath2) throws Exception {
         System.out.println("> generate()");
@@ -29,12 +26,13 @@ public class Differ {
 
         System.out.println("try to read all files");
 
-        String jsonFile1 = Files.readString(file1Path);
-        String jsonFile2 = Files.readString(file2Path);
+        String file1Content = Files.readString(file1Path);
+        String file2Content = Files.readString(file2Path);
+        String file1Type = filePath1.substring(filePath1.indexOf('.') + 1);
+        String file2Type = filePath2.substring(filePath2.indexOf('.') + 1);
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        Map<String, Object> map1 = objectMapper.readValue(jsonFile1, new TypeReference<>() { });
-        Map<String, Object> map2 = objectMapper.readValue(jsonFile2, new TypeReference<>() { });
+        Map<String, Object> map1 = Parser.parse(file1Content, file1Type);
+        Map<String, Object> map2 = Parser.parse(file2Content, file2Type);
 
         Set<String> set = new TreeSet<>();
         set.addAll(map1.keySet());
