@@ -42,7 +42,5 @@ bin/
 ### Mac OS ###
 .DS_Store
 
-file1.json
-file2.json
-file1.yml
-file2.yml
+*.json
+*.yml
