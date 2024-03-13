@@ -8,8 +8,8 @@ public class Formater {
 
         switch (format) {
             case "stylish":
-                return "{\n" +
-                        result.entrySet()
+                return "{\n"
+                        + result.entrySet()
                         .stream()
                         .map(e -> e.getKey() + ": " + e.getValue())
                         .collect(Collectors.joining("\n"))
