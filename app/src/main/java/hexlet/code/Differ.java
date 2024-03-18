@@ -6,7 +6,9 @@ import java.nio.file.Paths;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.HashMap;
 
 public class Differ {
     public static String generate(String filePath1, String filePath2, String format) throws Exception {
@@ -30,27 +32,41 @@ public class Differ {
         set.addAll(map1.keySet());
         set.addAll(map2.keySet());
 
-        Map<String, String> resultMap = new LinkedHashMap<>();
+        List<Map<String, Object>> resultList = new LinkedList<Map<String, Object>>();
 
         for (String key : set) {
             if (map1.containsKey(key) && !map2.containsKey(key)) {
-                String newKey = "- " + key;
-                resultMap.put(newKey, map1.get(key).toString());
+                Map<String, Object> map = new HashMap<>(4);
+                map.put("name", key);
+                map.put("change", "removed");
+                map.put("initValue", map1.get(key));
+                map.put("newValue", null);
+                resultList.add(map);
             } else if (map2.containsKey(key) && !map1.containsKey(key)) {
-                String newKey = "+ " + key;
-                resultMap.put(newKey, map2.get(key).toString());
+                Map<String, Object> map = new HashMap<>(4);
+                map.put("name", key);
+                map.put("change", "added");
+                map.put("initValue", null);
+                map.put("newValue", map2.get(key));
+                resultList.add(map);
             } else if (map2.containsKey(key) && map1.containsKey(key)) {
                 if ((String.valueOf(map1.get(key))).equals(String.valueOf(map2.get(key)))) {
-                    String newKey = "  " + key;
-                    resultMap.put(newKey, map1.get(key).toString());
+                    Map<String, Object> map = new HashMap<>(4);
+                    map.put("name", key);
+                    map.put("change", "same");
+                    map.put("initValue", map1.get(key));
+                    map.put("newValue", map2.get(key));
+                    resultList.add(map);
                 } else {
-                    String newKey1 = "- " + key;
-                    resultMap.put(newKey1, String.valueOf(map1.get(key)));
-                    String newKey2 = "+ " + key;
-                    resultMap.put(newKey2, String.valueOf(map2.get(key)));
+                    Map<String, Object> map = new HashMap<>(4);
+                    map.put("name", key);
+                    map.put("change", "updated");
+                    map.put("initValue", map1.get(key));
+                    map.put("newValue", map2.get(key));
+                    resultList.add(map);
                 }
             }
         }
-        return Formater.format(resultMap, format);
+        return Formatter.format(resultList, format);
     }
 }
