@@ -32,7 +32,7 @@ public class Differ {
         set.addAll(map1.keySet());
         set.addAll(map2.keySet());
 
-        List<Map<String, Object>> resultList = new LinkedList<Map<String, Object>>();
+        List<Map<String, Object>> resultList = new LinkedList<>();
 
         for (String key : set) {
             if (map1.containsKey(key) && !map2.containsKey(key)) {
