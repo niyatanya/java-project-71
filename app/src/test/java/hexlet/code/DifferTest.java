@@ -121,4 +121,54 @@ class DifferTest {
         String actual = Differ.generate(file1Path, file2Path, "plain");
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void testGenerateJsonJson() throws Exception {
+        String file1Path = "src/test/resources/file1.json";
+        String file2Path = "src/test/resources/file2.json";
+        String expected = "[{\"name\":\"chars1\",\"newValue\":[\"a\",\"b\",\"c\"],\"initValue\":[\"a\",\"b\",\"c\"]"
+                + ",\"change\":\"same\"},{\"name\":\"chars2\",\"newValue\":false,\"initValue\":"
+                + "[\"d\",\"e\",\"f\"],\"change\":\"updated\"},{\"name\":\"checked"
+                + "\",\"newValue\":true,\"initValue\":false,\"change\":\"updated\"},{\"name\":\"default\","
+                + "\"newValue\":[\"value1\",\"value2\"],\"initValue\":null,\"change\":\"updated\"},"
+                + "{\"name\":\"id\",\"newValue\":null,\"initValue\":45,\"change\":\"updated\"},{\"name\":\"key1\","
+                + "\"newValue\":null,\"initValue\":\"value1\",\"change\":\"removed\"},{\"name\":\"key2\",\"newValue"
+                + "\":\"value2\",\"initValue\":null,\"change\":\"added\"},{\"name\":\"numbers1"
+                + "\",\"newValue\":[1,2,3,4],\"initValue\":[1,2,3,4],\"change\":\"same\"},{\"name\":\"numbers2\","
+                + "\"newValue\":[22,33,44,55],\"initValue\":[2,3,4,5],\"change\":\"updated\"},{\"name\":\"numbers3"
+                + "\",\"newValue\":null,\"initValue\":[3,4,5],\"change\":\"removed\"},{\"name\":\"numbers4"
+                + "\",\"newValue\":[4,5,6],\"initValue\":null,\"change\":\"added\"},{\"name\":\"obj1\",\"newValue"
+                + "\":{\"nestedKey\":\"value\",\"isNested\""
+                + ":true},\"initValue\":null,\"change\":\"added\"},{\"name\":\"setting1\",\"newValue\":\"Another value"
+                + "\",\"initValue\":\"Some value\",\"change\":\"updated\"},{\"name\":\"setting2\",\"newValue\":300,"
+                + "\"initValue\":200,\"change\":\"updated\"},{\"name\":\"setting3\",\"newValue\":\"none\",\"initValue"
+                + "\":true,\"change\":\"updated\"}]";
+        String actual = Differ.generate(file1Path, file2Path, "json");
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testGenerateJsonYml() throws Exception {
+        String file1Path = "src/test/resources/file1.yml";
+        String file2Path = "src/test/resources/file2.yml";
+        String expected = "[{\"name\":\"chars1\",\"newValue\":[\"a\",\"b\",\"c\"],\"initValue\":[\"a\",\"b\",\"c\"]"
+                + ",\"change\":\"same\"},{\"name\":\"chars2\",\"newValue\":false,\"initValue\":"
+                + "[\"d\",\"e\",\"f\"],\"change\":\"updated\"},{\"name\":\"checked"
+                + "\",\"newValue\":true,\"initValue\":false,\"change\":\"updated\"},{\"name\":\"default\","
+                + "\"newValue\":[\"value1\",\"value2\"],\"initValue\":null,\"change\":\"updated\"},"
+                + "{\"name\":\"id\",\"newValue\":null,\"initValue\":45,\"change\":\"updated\"},{\"name\":\"key1\","
+                + "\"newValue\":null,\"initValue\":\"value1\",\"change\":\"removed\"},{\"name\":\"key2\",\"newValue"
+                + "\":\"value2\",\"initValue\":null,\"change\":\"added\"},{\"name\":\"numbers1"
+                + "\",\"newValue\":[1,2,3,4],\"initValue\":[1,2,3,4],\"change\":\"same\"},{\"name\":\"numbers2\","
+                + "\"newValue\":[22,33,44,55],\"initValue\":[2,3,4,5],\"change\":\"updated\"},{\"name\":\"numbers3"
+                + "\",\"newValue\":null,\"initValue\":[3,4,5],\"change\":\"removed\"},{\"name\":\"numbers4"
+                + "\",\"newValue\":[4,5,6],\"initValue\":null,\"change\":\"added\"},{\"name\":\"obj1\",\"newValue"
+                + "\":{\"nestedKey\":\"value\",\"isNested\""
+                + ":true},\"initValue\":null,\"change\":\"added\"},{\"name\":\"setting1\",\"newValue\":\"Another value"
+                + "\",\"initValue\":\"Some value\",\"change\":\"updated\"},{\"name\":\"setting2\",\"newValue\":300,"
+                + "\"initValue\":200,\"change\":\"updated\"},{\"name\":\"setting3\",\"newValue\":\"none\",\"initValue"
+                + "\":true,\"change\":\"updated\"}]";
+        String actual = Differ.generate(file1Path, file2Path, "json");
+        assertEquals(expected, actual);
+    }
 }
