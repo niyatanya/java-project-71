@@ -42,5 +42,5 @@ bin/
 ### Mac OS ###
 .DS_Store
 
-*.json
-*.yml
+/app/*.json
+/app/*.yml
