@@ -12,29 +12,29 @@ public class Stylish {
             String change = (String) map.get("change");
             switch (change) {
                 case "updated":
-                    resultList.add("- "
+                    resultList.add("  - "
                             + map.get("name")
                             + ": "
                             + map.get("initValue"));
-                    resultList.add("+ "
+                    resultList.add("  + "
                             + map.get("name")
                             + ": "
                             + map.get("newValue"));
                     break;
                 case "removed":
-                    resultList.add("- "
+                    resultList.add("  - "
                             + map.get("name")
                             + ": "
                             + map.get("initValue"));
                     break;
                 case "added":
-                    resultList.add("+ "
+                    resultList.add("  + "
                             + map.get("name")
                             + ": "
                             + map.get("newValue"));
                     break;
                 case "same":
-                    resultList.add("  "
+                    resultList.add("    "
                             + map.get("name")
                             + ": "
                             + map.get("initValue"));
