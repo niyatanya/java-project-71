@@ -9,23 +9,31 @@ import java.util.concurrent.Callable;
 
 @Command(name = "gendiff", mixinStandardHelpOptions = true, version = "gendiff 1.0",
         description = "Compares two configuration files and shows a difference.")
-public class App implements Callable<String> {
+public class App implements Callable<Integer> {
+
+    private static final int SUCCESS_EXIT_CODE = 0;
+    private static final int ERROR_EXIT_CODE = 1;
     @Option(names = {"-f", "--format"}, defaultValue = "stylish", description = "output format [default: stylish]")
-    String format;
+    String formatName;
 
     @Parameters(index = "0", paramLabel = "filepath1", description = "path to first file")
-    String filepath1;
+    String filePath1;
     @Parameters(index = "1", paramLabel = "filepath2", description = "path to second file")
-    String filepath2;
+    String filePath2;
     @Override
-    public String call() {
+    public Integer call() {
+
         try {
-            System.out.println(Differ.generate(filepath1, filepath2, format));
+            String formattedDiff = Differ.generate(filePath1, filePath2, formatName);
+            System.out.println(formattedDiff);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            System.err.println(e.getMessage());
+            return ERROR_EXIT_CODE;
         }
-        return null;
+
+        return SUCCESS_EXIT_CODE;
     }
+
     public static void main(String... args) {
         int exitCode = new CommandLine(new App()).execute(args);
         System.exit(exitCode);
