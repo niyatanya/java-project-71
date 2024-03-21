@@ -41,33 +41,33 @@ class DifferTest {
         assertEquals(expected, actual);
     }
 
-//    @Test
-//    public void testGenerateStylishYml() throws Exception {
-//        String file1Path = "src/test/resources/fixtures/file1.yml";
-//        String file2Path = "src/test/resources/fixtures/file2.yml";
-//        String expected = resultStylish;
-//        String actual = Differ.generate(file1Path, file2Path, "stylish");
-//        assertEquals(expected, actual);
-//    }
-//
-//    @Test
-//    public void testGeneratePlainJson() throws Exception {
-//        String file1Path = "src/test/resources/fixtures/file1.json";
-//        String file2Path = "src/test/resources/fixtures/file2.json";
-//        String expected = resultPlain;
-//        String actual = Differ.generate(file1Path, file2Path, "plain");
-//        assertEquals(expected, actual);
-//    }
-//
-//    @Test
-//    public void testGeneratePlainYml() throws Exception {
-//        String file1Path = "src/test/resources/fixtures/file1.yml";
-//        String file2Path = "src/test/resources/fixtures/file2.yml";
-//        String expected = resultPlain;
-//        String actual = Differ.generate(file1Path, file2Path, "plain");
-//        assertEquals(expected, actual);
-//    }
-//
+    @Test
+    public void testGenerateStylishYml() throws Exception {
+        String file1Path = "src/test/resources/fixtures/file1.yml";
+        String file2Path = "src/test/resources/fixtures/file2.yml";
+        String expected = resultStylish;
+        String actual = Differ.generate(file1Path, file2Path, "stylish");
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testGeneratePlainJson() throws Exception {
+        String file1Path = "src/test/resources/fixtures/file1.json";
+        String file2Path = "src/test/resources/fixtures/file2.json";
+        String expected = resultPlain;
+        String actual = Differ.generate(file1Path, file2Path, "plain");
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testGeneratePlainYml() throws Exception {
+        String file1Path = "src/test/resources/fixtures/file1.yml";
+        String file2Path = "src/test/resources/fixtures/file2.yml";
+        String expected = resultPlain;
+        String actual = Differ.generate(file1Path, file2Path, "plain");
+        assertEquals(expected, actual);
+    }
+
     @Test
     public void testGenerateJsonJson() throws Exception {
         String file1Path = "src/test/resources/fixtures/file1.json";
@@ -85,21 +85,21 @@ class DifferTest {
         String actual = Differ.generate(file1Path, file2Path, "json");
         assertEquals(expected, actual);
     }
-//    @Test
-//    public void testGenerateDefaultJson() throws Exception {
-//        String file1Path = "src/test/resources/fixtures/file1.json";
-//        String file2Path = "src/test/resources/fixtures/file2.json";
-//        String expected = resultStylish;
-//        String actual = Differ.generate(file1Path, file2Path);
-//        assertEquals(expected, actual);
-//    }
-//
-//    @Test
-//    public void testGenerateDefaultYml() throws Exception {
-//        String file1Path = "src/test/resources/fixtures/file1.yml";
-//        String file2Path = "src/test/resources/fixtures/file2.yml";
-//        String expected = resultStylish;
-//        String actual = Differ.generate(file1Path, file2Path);
-//        assertEquals(expected, actual);
-//    }
+    @Test
+    public void testGenerateDefaultJson() throws Exception {
+        String file1Path = "src/test/resources/fixtures/file1.json";
+        String file2Path = "src/test/resources/fixtures/file2.json";
+        String expected = resultStylish;
+        String actual = Differ.generate(file1Path, file2Path);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testGenerateDefaultYml() throws Exception {
+        String file1Path = "src/test/resources/fixtures/file1.yml";
+        String file2Path = "src/test/resources/fixtures/file2.yml";
+        String expected = resultStylish;
+        String actual = Differ.generate(file1Path, file2Path);
+        assertEquals(expected, actual);
+    }
 }
