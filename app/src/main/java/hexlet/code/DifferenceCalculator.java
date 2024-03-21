@@ -1,7 +1,7 @@
 package hexlet.code;
 
 import java.util.Map;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.LinkedList;
@@ -17,14 +17,14 @@ public class DifferenceCalculator {
 
         for (String key : set) {
             if (map1.containsKey(key) && !map2.containsKey(key)) {
-                Map<String, Object> map = new HashMap<>(4);
+                Map<String, Object> map = new LinkedHashMap<>();
                 map.put("name", key);
                 map.put("change", "removed");
                 map.put("initValue", map1.get(key));
                 map.put("newValue", null);
                 resultList.add(map);
             } else if (map2.containsKey(key) && !map1.containsKey(key)) {
-                Map<String, Object> map = new HashMap<>(4);
+                Map<String, Object> map = new LinkedHashMap<>();
                 map.put("name", key);
                 map.put("change", "added");
                 map.put("initValue", null);
@@ -32,14 +32,14 @@ public class DifferenceCalculator {
                 resultList.add(map);
             } else if (map2.containsKey(key) && map1.containsKey(key)) {
                 if ((String.valueOf(map1.get(key))).equals(String.valueOf(map2.get(key)))) {
-                    Map<String, Object> map = new HashMap<>(4);
+                    Map<String, Object> map = new LinkedHashMap<>();
                     map.put("name", key);
                     map.put("change", "same");
                     map.put("initValue", map1.get(key));
                     map.put("newValue", map2.get(key));
                     resultList.add(map);
                 } else {
-                    Map<String, Object> map = new HashMap<>(4);
+                    Map<String, Object> map = new LinkedHashMap<>();
                     map.put("name", key);
                     map.put("change", "updated");
                     map.put("initValue", map1.get(key));
