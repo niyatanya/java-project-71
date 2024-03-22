@@ -1,8 +1,9 @@
 package hexlet.code;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -30,76 +31,16 @@ class DifferTest {
         resultPlain = readFixture("result_plain.txt");
         resultStylish = readFixture("result_stylish.txt");
     }
-    @Test
-    public void testGenerateStylishJson() throws Exception {
-        String file1Path = "src/test/resources/fixtures/file1.json";
-        String file2Path = "src/test/resources/fixtures/file2.json";
-        String expected = resultStylish;
-        String actual = Differ.generate(file1Path, file2Path, "stylish");
-        System.out.println("DEBUG. Expected line length: " + expected.length());
-        System.out.println("DEBUG. Actual line length: " + actual.length());
-        assertEquals(expected, actual);
-    }
 
-    @Test
-    public void testGenerateStylishYml() throws Exception {
-        String file1Path = "src/test/resources/fixtures/file1.yml";
-        String file2Path = "src/test/resources/fixtures/file2.yml";
-        String expected = resultStylish;
-        String actual = Differ.generate(file1Path, file2Path, "stylish");
-        assertEquals(expected, actual);
-    }
+    @ParameterizedTest
+    @ValueSource(strings = {"json", "yml"})
+    public void generateTest(String format) throws Exception {
+        String filePath1 = getFixturePath("file1." + format).toString();
+        String filePath2 = getFixturePath("file2." + format).toString();
 
-    @Test
-    public void testGeneratePlainJson() throws Exception {
-        String file1Path = "src/test/resources/fixtures/file1.json";
-        String file2Path = "src/test/resources/fixtures/file2.json";
-        String expected = resultPlain;
-        String actual = Differ.generate(file1Path, file2Path, "plain");
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void testGeneratePlainYml() throws Exception {
-        String file1Path = "src/test/resources/fixtures/file1.yml";
-        String file2Path = "src/test/resources/fixtures/file2.yml";
-        String expected = resultPlain;
-        String actual = Differ.generate(file1Path, file2Path, "plain");
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void testGenerateJsonJson() throws Exception {
-        String file1Path = "src/test/resources/fixtures/file1.json";
-        String file2Path = "src/test/resources/fixtures/file2.json";
-        String expected = resultJson;
-        String actual = Differ.generate(file1Path, file2Path, "json");
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void testGenerateJsonYml() throws Exception {
-        String file1Path = "src/test/resources/fixtures/file1.yml";
-        String file2Path = "src/test/resources/fixtures/file2.yml";
-        String expected = resultJson;
-        String actual = Differ.generate(file1Path, file2Path, "json");
-        assertEquals(expected, actual);
-    }
-    @Test
-    public void testGenerateDefaultJson() throws Exception {
-        String file1Path = "src/test/resources/fixtures/file1.json";
-        String file2Path = "src/test/resources/fixtures/file2.json";
-        String expected = resultStylish;
-        String actual = Differ.generate(file1Path, file2Path);
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void testGenerateDefaultYml() throws Exception {
-        String file1Path = "src/test/resources/fixtures/file1.yml";
-        String file2Path = "src/test/resources/fixtures/file2.yml";
-        String expected = resultStylish;
-        String actual = Differ.generate(file1Path, file2Path);
-        assertEquals(expected, actual);
+        assertThat(Differ.generate(filePath1, filePath2)).isEqualTo(resultStylish);
+        assertThat(Differ.generate(filePath1, filePath2, "stylish")).isEqualTo(resultStylish);
+        assertThat(Differ.generate(filePath1, filePath2, "plain")).isEqualTo(resultPlain);
+        assertThat(Differ.generate(filePath1, filePath2, "json")).isEqualTo(resultJson);
     }
 }

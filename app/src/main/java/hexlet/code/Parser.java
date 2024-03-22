@@ -12,7 +12,7 @@ public class Parser {
         switch (type) {
             case "json":
                 return parseJson(data);
-            case "yml":
+            case "yml": case "yaml":
                 return parseYml(data);
             default:
                 throw new Exception("Unknown data format: " + type);
